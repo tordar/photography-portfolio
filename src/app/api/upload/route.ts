@@ -17,8 +17,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'No file uploaded' }, { status: 400 })
   }
 
-  const blob = await put(file.name, file, { access: 'public' })
-
-  return NextResponse.json(blob)
+  try {
+    const blob = await put(file.name, file, { access: 'public' })
+    return NextResponse.json(blob)
+  } catch (error) {
+    console.error('Error uploading file:', error)
+    return NextResponse.json({ error: 'Error uploading file' }, { status: 500 })
+  }
 }
 
