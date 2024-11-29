@@ -1,0 +1,17 @@
+Frontend (Public Portfolio):
+- Next.js pages to display the images
+- Gallery component to showcase the photos
+
+Admin Panel:
+- Protected routes for authentication
+- Image upload functionality
+- Image management (delete, update metadata, etc.)
+
+Authentication:
+- NextAuth.js for handling admin login
+
+Storage:
+- Vercel Blob for storing and serving images 
+
+API Routes:
+- Endpoints for image upload, retrieval, and management
