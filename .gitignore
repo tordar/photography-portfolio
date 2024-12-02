@@ -3,3 +3,4 @@ node_modules
 .env.local
 .vercel
 BLOB_READ_WRITE_TOKEN
+.env*.local
