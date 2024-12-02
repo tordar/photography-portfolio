@@ -9,7 +9,6 @@ export const config = {
   },
 }
 
-
 export async function POST(request: Request) {
   console.log('Upload request received')
 
@@ -40,15 +39,14 @@ export async function POST(request: Request) {
     console.log('Initiating put operation')
     let blob: PutBlobResult
     try {
-      console.log('Vercel Blob put operation started')
       blob = await put(uniqueFilename, file, {
         access: 'public',
         addRandomSuffix: false,
       })
-      console.log('Vercel Blob put operation completed successfully')
+      console.log('Put operation completed successfully')
     } catch (putError) {
-      console.error('Error during Vercel Blob put operation:', putError)
-      throw putError
+      console.error('Error during put operation:', putError)
+      return NextResponse.json({ error: 'Upload failed', details: putError instanceof Error ? putError.message : 'Unknown error during put operation' }, { status: 500 })
     }
 
     const uploadDuration = Date.now() - uploadStartTime
