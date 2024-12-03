@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="" />
+    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="chenged config files">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/upload/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/upload/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/AdminPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/AdminPanel.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,22 +48,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/rodekors/Documents/GitHub/photography-portfolio&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/rodekors/Documents/GitHub/photography-portfolio/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/rodekors/Documents/GitHub/photography-portfolio",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
+    "ts.external.directory.path": "/Users/rodekors/Documents/GitHub/photography-portfolio/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="npm.dev">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -97,6 +102,7 @@
       <workItem from="1732882966140" duration="134000" />
       <workItem from="1732883269796" duration="7311000" />
       <workItem from="1733140492928" duration="2611000" />
+      <workItem from="1733143165705" duration="2115000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -138,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733142520849</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="chenged config files">
+      <option name="closed" value="true" />
+      <created>1733143329611</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733143329611</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +165,7 @@
     <MESSAGE value="admin panel set up" />
     <MESSAGE value="attempt to upload from deployed" />
     <MESSAGE value="fixed basic gallery" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed basic gallery" />
+    <MESSAGE value="chenged config files" />
+    <option name="LAST_COMMIT_MESSAGE" value="chenged config files" />
   </component>
 </project>

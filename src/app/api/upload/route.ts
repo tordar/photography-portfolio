@@ -1,25 +1,26 @@
 import { NextResponse } from 'next/server'
-import { put, PutBlobResult } from '@vercel/blob'
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '../auth/auth-options'
 
 export const config = {
   api: {
     bodyParser: false,
+    responseLimit: false
   },
 }
 
 export async function POST(request: Request) {
   console.log('Upload request received')
 
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.error('BLOB_READ_WRITE_TOKEN is not set')
+    return NextResponse.json({ error: 'Server configuration error' }, { status: 500 })
+  }
+
   try {
-    console.log('Checking authentication')
-    const session = await getServerSession(authOptions)
-    if (!session) {
-      console.log('Unauthorized access attempt')
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-    console.log('Authentication successful')
+    // Get the abort signal from the request
+    const signal = request.signal;
+    signal.addEventListener('abort', () => {
+      console.log('Request was aborted by the client');
+    });
 
     console.log('Parsing form data')
     const formData = await request.formData()
@@ -30,37 +31,38 @@ export async function POST(request: Request) {
     }
 
     console.log(`File details: name=${file.name}, size=${file.size}, type=${file.type}`)
-
     const uniqueFilename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-
     console.log(`Starting upload of ${uniqueFilename}`)
-    const uploadStartTime = Date.now()
 
-    console.log('Initiating put operation')
-    let blob: PutBlobResult
-    try {
-      blob = await put(uniqueFilename, file, {
-        access: 'public',
-        addRandomSuffix: false,
-      })
-      console.log('Put operation completed successfully')
-    } catch (putError) {
-      console.error('Error during put operation:', putError)
-      return NextResponse.json({ error: 'Upload failed', details: putError instanceof Error ? putError.message : 'Unknown error during put operation' }, { status: 500 })
+    const response = await fetch(`https://blob.vercel-storage.com/store/${process.env.BLOB_STORE_ID}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}`,
+        'Content-Type': file.type,
+        'x-content-type': file.type,
+      },
+      body: file,
+      signal, // Pass through the abort signal
+    });
+
+    if (!response.ok) {
+      throw new Error(`Upload failed with status: ${response.status}`);
     }
 
-    const uploadDuration = Date.now() - uploadStartTime
-    console.log(`Upload successful: url=${blob.url}, pathname=${blob.pathname}, duration=${uploadDuration}ms`)
+    const result = await response.json();
+    console.log('Upload successful:', result);
 
     return NextResponse.json({
       success: true,
-      url: blob.url,
-      pathname: blob.pathname,
-      duration: uploadDuration,
-    })
+      url: result.url,
+      pathname: result.pathname
+    });
 
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Upload error:', error)
+    if (error instanceof Error && error.name === 'AbortError') {
+      return NextResponse.json({ error: 'Upload cancelled by client' }, { status: 499 })
+    }
     return NextResponse.json({
       error: 'Upload failed',
       details: error instanceof Error ? error.message : 'Unknown error',

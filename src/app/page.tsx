@@ -1,10 +1,13 @@
 import { list } from '@vercel/blob'
 import Gallery from './components/Gallery'
+import { unstable_noStore as noStore } from 'next/cache';
 
 export default async function Home() {
+    // Opt out of caching for this page
+    noStore();
     const { blobs } = await list()
 
-    console.log('Fetched blobs:', blobs) // Add this line for debugging
+    console.log('Fetched blobs:', blobs)
 
     return (
         <main className="min-h-screen bg-white">

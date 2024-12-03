@@ -1,17 +1,19 @@
 'use client'
 
-import React, { useState, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
 import type { Session } from "next-auth"
 
-const UPLOAD_TIMEOUT = 600000; // 10 minutes
+const UPLOAD_TIMEOUT = 60000; // 1 minute
 
 interface UploadResponse {
     success: boolean;
-    url: string;
-    pathname: string;
-    duration: number;
+    url?: string;
+    pathname?: string;
+    duration?: number;
+    error?: string;
+    details?: string;
 }
 
 export default function AdminPanel() {
@@ -30,28 +32,31 @@ export default function AdminPanel() {
         setUploadProgress(0)
         setError(null)
 
-        const formData = new FormData()
-        formData.append('file', file)
-
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), UPLOAD_TIMEOUT)
-
         try {
-            const response = await fetch('/api/upload', {
-                method: 'POST',
-                body: formData,
-                signal: controller.signal
+            // First, get the upload credentials
+            const credentialsResponse = await fetch('/api/get-upload-url')
+            if (!credentialsResponse.ok) {
+                throw new Error('Failed to get upload credentials')
+            }
+            const { uploadUrl, token } = await credentialsResponse.json()
+
+            // Then upload directly to Blob storage
+            const response = await fetch(uploadUrl, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': file.type,
+                    'x-content-type': file.type,
+                },
+                body: file
             })
 
-            clearTimeout(timeoutId)
-
             if (!response.ok) {
-                const errorData = await response.json()
-                throw new Error(errorData.details || `Upload failed with status: ${response.status}`)
+                throw new Error(`Upload failed with status: ${response.status}`)
             }
 
-            const data = await response.json() as UploadResponse
-            console.log('Upload successful:', data)
+            const result = await response.json()
+            console.log('Upload successful:', result)
             setFile(null)
             setUploadProgress(100)
             router.refresh()
