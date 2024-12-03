@@ -5,16 +5,6 @@ import { useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
 import type { Session } from "next-auth"
 
-const UPLOAD_TIMEOUT = 60000; // 1 minute
-
-interface UploadResponse {
-    success: boolean;
-    url?: string;
-    pathname?: string;
-    duration?: number;
-    error?: string;
-    details?: string;
-}
 
 export default function AdminPanel() {
     const [file, setFile] = useState<File | null>(null)
