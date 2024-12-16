@@ -1,17 +1,45 @@
 Frontend (Public Portfolio):
 - Next.js pages to display the images
 - Gallery component to showcase the photos
+- Create a menu with routes for different image collections
+- Implement tag-based navigation for image collections
+- Add a search functionality based on tags and descriptions
 
 Admin Panel:
 - Protected routes for authentication
 - Image upload functionality
+  - Include metadata input for tags and description
+  - Create a database or use a file-based system to store the image metadata separately. This will allow for easier querying and management of the data.
+  - Implement API routes for fetching images based on tags.
+  - Create frontend components to display images grouped by tags.
 - Image management (delete, update metadata, etc.)
+- Implement tag management system
 
 Authentication:
 - NextAuth.js for handling admin login
 
 Storage:
-- Vercel Blob for storing and serving images 
+- Vercel Blob for storing and serving images
+- Implement metadata storage solution (e.g., database or JSON files)
 
 API Routes:
 - Endpoints for image upload, retrieval, and management
+- Create endpoints for tag-based image queries
+- Implement metadata CRUD operations
+
+Data Model:
+- Design schema for image metadata (including tags and descriptions)
+- Create data structure for organizing images by tags
+
+Testing:
+- Unit tests for API routes and components
+- Integration tests for image upload and retrieval processes
+
+Optimization:
+- Implement image lazy loading for better performance
+- Add pagination or infinite scroll for large image collections
+
+Documentation:
+- Create user guide for the admin panel
+- Document the API endpoints and data structures
+
