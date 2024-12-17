@@ -4,24 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/api/blob-upload-token/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/blob-upload/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/env-check/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/images/by-tag/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/images/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/store-metadata/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/TaggedGallery.tsx" afterDir="false" />
+    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="metadata in supabase and successfully uploading in dev">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ToDo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/upload/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/upload/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/AdminPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/AdminPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Gallery.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +109,7 @@
       <workItem from="1733319058860" duration="210000" />
       <workItem from="1733393990722" duration="5011000" />
       <workItem from="1733926092817" duration="2819000" />
-      <workItem from="1734352368295" duration="1616000" />
+      <workItem from="1734352368295" duration="4446000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -170,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733143329611</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="metadata in supabase and successfully uploading in dev">
+      <option name="closed" value="true" />
+      <created>1734354073774</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734354073774</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +181,7 @@
     <MESSAGE value="attempt to upload from deployed" />
     <MESSAGE value="fixed basic gallery" />
     <MESSAGE value="chenged config files" />
-    <option name="LAST_COMMIT_MESSAGE" value="chenged config files" />
+    <MESSAGE value="metadata in supabase and successfully uploading in dev" />
+    <option name="LAST_COMMIT_MESSAGE" value="metadata in supabase and successfully uploading in dev" />
   </component>
 </project>
