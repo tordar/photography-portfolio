@@ -1,6 +1,3 @@
-'use client'
-
-import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 interface ImageMetadata {
@@ -12,34 +9,11 @@ interface ImageMetadata {
     created_at: string
 }
 
-export default function Gallery() {
-    const [images, setImages] = useState<ImageMetadata[]>([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
+interface GalleryProps {
+    images: ImageMetadata[]
+}
 
-    useEffect(() => {
-        async function fetchImages() {
-            try {
-                const response = await fetch('/api/images')
-                if (!response.ok) {
-                    throw new Error('Failed to fetch images')
-                }
-                const data = await response.json()
-                setImages(data.images)
-            } catch (err) {
-                setError('Failed to load images')
-                console.error(err)
-            } finally {
-                setLoading(false)
-            }
-        }
-
-        fetchImages()
-    }, [])
-
-    if (loading) return <div>Loading...</div>
-    if (error) return <div>Error: {error}</div>
-
+export default function Gallery({ images }: GalleryProps) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {images.map((image) => (
