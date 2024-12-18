@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="removed nav from admin panel">
-      <change afterPath="$PROJECT_DIR$/src/app/api/tags/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/progress.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/toast.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/use-toast.tsx" afterDir="false" />
+    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="bulk upload of images now possible">
+      <change afterPath="$PROJECT_DIR$/src/app/components/FullscreenImage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/category/[tag]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/category/[tag]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/AdminPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/AdminPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -78,7 +68,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -120,7 +110,7 @@
       <workItem from="1733393990722" duration="5011000" />
       <workItem from="1733926092817" duration="2819000" />
       <workItem from="1734352368295" duration="6637000" />
-      <workItem from="1734440093822" duration="6872000" />
+      <workItem from="1734440093822" duration="7465000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -202,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734532091499</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="bulk upload of images now possible">
+      <option name="closed" value="true" />
+      <created>1734533670895</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1734533670895</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +218,7 @@
     <MESSAGE value="improved metadata handling system for admin" />
     <MESSAGE value="dynamic routing with menu for image tags" />
     <MESSAGE value="removed nav from admin panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed nav from admin panel" />
+    <MESSAGE value="bulk upload of images now possible" />
+    <option name="LAST_COMMIT_MESSAGE" value="bulk upload of images now possible" />
   </component>
 </project>
