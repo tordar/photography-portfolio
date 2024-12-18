@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="improved metadata handling system for admin">
-      <change afterPath="$PROJECT_DIR$/src/app/category/[tag]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/Navigation.tsx" afterDir="false" />
+    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Gallery.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/category/[tag]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/category/[tag]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
     </list>
@@ -43,6 +41,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/app/components/Gallery.tsx" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -68,7 +70,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -109,7 +111,8 @@
       <workItem from="1733319058860" duration="210000" />
       <workItem from="1733393990722" duration="5011000" />
       <workItem from="1733926092817" duration="2819000" />
-      <workItem from="1734352368295" duration="5644000" />
+      <workItem from="1734352368295" duration="6637000" />
+      <workItem from="1734440093822" duration="5185000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -175,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734425999055</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="dynamic routing with menu for image tags">
+      <option name="closed" value="true" />
+      <created>1734427060686</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1734427060686</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,6 +202,7 @@
     <MESSAGE value="chenged config files" />
     <MESSAGE value="metadata in supabase and successfully uploading in dev" />
     <MESSAGE value="improved metadata handling system for admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved metadata handling system for admin" />
+    <MESSAGE value="dynamic routing with menu for image tags" />
+    <option name="LAST_COMMIT_MESSAGE" value="dynamic routing with menu for image tags" />
   </component>
 </project>

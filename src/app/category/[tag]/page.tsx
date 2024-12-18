@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import Gallery from '@/app/components/Gallery'
+import Navigation from '@/app/components/Navigation'
 import { notFound } from 'next/navigation'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -55,10 +56,13 @@ export default async function CategoryPage({
     }
 
     return (
-        <main className="container mx-auto px-4 py-12">
-            <h1 className="text-4xl font-bold text-center mb-12 capitalize">{decodedTag}</h1>
-            <Gallery images={images} />
-        </main>
+        <>
+            <Navigation />
+            <main className="container mx-auto px-4 py-12">
+                <h1 className="text-4xl font-bold text-center mb-12 capitalize">{decodedTag}</h1>
+                <Gallery images={images} />
+            </main>
+        </>
     )
 }
 
