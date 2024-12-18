@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="bulk upload of images now possible">
-      <change afterPath="$PROJECT_DIR$/src/app/components/FullscreenImage.tsx" afterDir="false" />
+    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="fullscreen images">
+      <change afterPath="$PROJECT_DIR$/src/app/components/ImageManagementTable.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/AdminPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/AdminPanel.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +71,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.build">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -110,7 +113,7 @@
       <workItem from="1733393990722" duration="5011000" />
       <workItem from="1733926092817" duration="2819000" />
       <workItem from="1734352368295" duration="6637000" />
-      <workItem from="1734440093822" duration="7465000" />
+      <workItem from="1734440093822" duration="8294000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -200,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734533670895</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fullscreen images">
+      <option name="closed" value="true" />
+      <created>1734534353559</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1734534353559</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +230,7 @@
     <MESSAGE value="dynamic routing with menu for image tags" />
     <MESSAGE value="removed nav from admin panel" />
     <MESSAGE value="bulk upload of images now possible" />
-    <option name="LAST_COMMIT_MESSAGE" value="bulk upload of images now possible" />
+    <MESSAGE value="fullscreen images" />
+    <option name="LAST_COMMIT_MESSAGE" value="fullscreen images" />
   </component>
 </project>

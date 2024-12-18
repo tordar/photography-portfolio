@@ -19,6 +19,8 @@ import {
 } from "@/components/ui/select"
 import { Progress } from "@/components/ui/progress"
 import { useToast } from "@/components/ui/use-toast"
+import { ImageManagementTable } from './ImageManagementTable'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function AdminPanel() {
     const [files, setFiles] = useState<FileList | null>(null)
@@ -46,6 +48,10 @@ export default function AdminPanel() {
         fetchTags()
     }, [])
 
+    const sanitizeFileName = (fileName: string) => {
+        return fileName.replace(/#/g, '%23').replace(/[^a-zA-Z0-9.-]/g, '_')
+    }
+
     const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (!files || files.length === 0) return
@@ -59,7 +65,10 @@ export default function AdminPanel() {
 
             for (let i = 0; i < totalFiles; i++) {
                 const file = files[i]
-                const { url, pathname } = await upload(file.name, file, {
+                const sanitizedFileName = sanitizeFileName(file.name)
+                const uniqueFileName = `${Date.now()}-${sanitizedFileName}`
+
+                const { url, pathname } = await upload(uniqueFileName, file, {
                     access: 'public',
                     handleUploadUrl: '/api/blob-upload',
                 })
@@ -128,74 +137,85 @@ export default function AdminPanel() {
     return (
         <div className="space-y-4">
             <h2 className="text-xl font-semibold">Welcome, {session?.user?.name || 'Admin'}</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <Label htmlFor="file">Select Images</Label>
-                    <Input
-                        id="file"
-                        type="file"
-                        accept="image/*"
-                        multiple
-                        ref={fileInputRef}
-                        onChange={(e) => setFiles(e.target.files)}
-                    />
-                </div>
-                <div>
-                    <Label htmlFor="tags">Tags</Label>
-                    <div className="flex space-x-2">
-                        <Select onValueChange={handleAddTag}>
-                            <SelectTrigger className="w-[180px]">
-                                <SelectValue placeholder="Select a tag" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {allTags.map((tag) => (
-                                    <SelectItem key={tag} value={tag}>
+            <Tabs defaultValue="upload">
+                <TabsList>
+                    <TabsTrigger value="upload">Upload Images</TabsTrigger>
+                    <TabsTrigger value="manage">Manage Images</TabsTrigger>
+                </TabsList>
+                <TabsContent value="upload">
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
+                            <Label htmlFor="file">Select Images</Label>
+                            <Input
+                                id="file"
+                                type="file"
+                                accept="image/*"
+                                multiple
+                                ref={fileInputRef}
+                                onChange={(e) => setFiles(e.target.files)}
+                            />
+                        </div>
+                        <div>
+                            <Label htmlFor="tags">Tags</Label>
+                            <div className="flex space-x-2">
+                                <Select onValueChange={handleAddTag}>
+                                    <SelectTrigger className="w-[180px]">
+                                        <SelectValue placeholder="Select a tag" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {allTags.map((tag) => (
+                                            <SelectItem key={tag} value={tag}>
+                                                {tag}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                <Input
+                                    placeholder="New tag"
+                                    value={newTag}
+                                    onChange={(e) => setNewTag(e.target.value)}
+                                />
+                                <Button type="button" onClick={() => handleAddTag(newTag)}>Add Tag</Button>
+                            </div>
+                            <div className="mt-2">
+                                {tags.map((tag, index) => (
+                                    <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                                         {tag}
-                                    </SelectItem>
+                                        <button
+                                            type="button"
+                                            onClick={() => handleRemoveTag(tag)}
+                                            className="ml-2 text-red-500"
+                                        >
+                                            ×
+                                        </button>
+                                    </span>
                                 ))}
-                            </SelectContent>
-                        </Select>
-                        <Input
-                            placeholder="New tag"
-                            value={newTag}
-                            onChange={(e) => setNewTag(e.target.value)}
-                        />
-                        <Button type="button" onClick={() => handleAddTag(newTag)}>Add Tag</Button>
-                    </div>
-                    <div className="mt-2">
-                        {tags.map((tag, index) => (
-                            <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                                {tag}
-                                <button
-                                    type="button"
-                                    onClick={() => handleRemoveTag(tag)}
-                                    className="ml-2 text-red-500"
-                                >
-                                    ×
-                                </button>
-                            </span>
-                        ))}
-                    </div>
-                </div>
-                <div>
-                    <Label htmlFor="description">Description (applies to all uploaded images)</Label>
-                    <Textarea
-                        id="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder="Describe your images..."
-                    />
-                </div>
-                <Button type="submit" disabled={!files || uploading}>
-                    {uploading ? 'Uploading...' : 'Upload Images'}
-                </Button>
-            </form>
-            {uploading && (
-                <div className="space-y-2">
-                    <Progress value={uploadProgress} className="w-full" />
-                    <p className="text-sm text-gray-600">Uploading... {Math.round(uploadProgress)}% complete</p>
-                </div>
-            )}
+                            </div>
+                        </div>
+                        <div>
+                            <Label htmlFor="description">Description (applies to all uploaded images)</Label>
+                            <Textarea
+                                id="description"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                placeholder="Describe your images..."
+                            />
+                        </div>
+                        <Button type="submit" disabled={!files || uploading}>
+                            {uploading ? 'Uploading...' : 'Upload Images'}
+                        </Button>
+                    </form>
+                    {uploading && (
+                        <div className="space-y-2">
+                            <Progress value={uploadProgress} className="w-full" />
+                            <p className="text-sm text-gray-600">Uploading... {Math.round(uploadProgress)}% complete</p>
+                        </div>
+                    )}
+                </TabsContent>
+                <TabsContent value="manage">
+                    <ImageManagementTable />
+                </TabsContent>
+            </Tabs>
             <Button variant="destructive" onClick={handleSignOut}>
                 Sign Out
             </Button>
