@@ -1,8 +1,8 @@
 const { createClient } = require('@supabase/supabase-js');
 const sharp = require('sharp');
 
-const supabaseUrl = "https://gjaacaogwfzgosjnpepk.supabase.co"
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdqYWFjYW9nd2Z6Z29zam5wZXBrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczMzM5NDcxMiwiZXhwIjoyMDQ4OTcwNzEyfQ.rxw49LMdRMjgC1BwmSjnVzabnC8IiCyCe0SThbRYk0I"
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
     throw new Error('Missing Supabase environment variables');
