@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import { FullscreenImage } from './FullscreenImage'
 
@@ -11,6 +11,8 @@ interface ImageMetadata {
     tags: string[]
     description: string
     created_at: string
+    width?: number
+    height?: number
 }
 
 interface GalleryProps {
@@ -18,46 +20,53 @@ interface GalleryProps {
 }
 
 export default function Gallery({ images }: GalleryProps) {
-    const [selectedImage, setSelectedImage] = useState<ImageMetadata | null>(null)
+    const [fullscreenIndex, setFullscreenIndex] = useState<number | null>(null)
 
-    const openFullscreen = (image: ImageMetadata) => {
-        setSelectedImage(image)
-    }
+    const openFullscreen = useCallback((index: number) => {
+        setFullscreenIndex(index)
+    }, [])
 
-    const closeFullscreen = () => {
-        setSelectedImage(null)
-    }
+    const closeFullscreen = useCallback(() => {
+        setFullscreenIndex(null)
+    }, [])
+
+    const navigateFullscreen = useCallback((newIndex: number) => {
+        setFullscreenIndex(newIndex)
+    }, [])
 
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {images.map((image) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {images.map((image, index) => (
                     <div
                         key={image.id}
-                        className="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 cursor-pointer"
-                        onClick={() => openFullscreen(image)}
+                        className="relative cursor-pointer overflow-hidden"
+                        onClick={() => openFullscreen(index)}
                     >
-                        <Image
-                            src={image.blob_url}
-                            alt={image.description || 'Uploaded image'}
-                            fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300">
-                            <div className="p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <p className="font-bold">{image.description}</p>
-                                <p className="text-sm mt-2">Tags: {image.tags.join(', ')}</p>
+                        <div className="aspect-w-4 aspect-h-3">
+                            <Image
+                                src={image.blob_url}
+                                alt={image.description || 'Gallery image'}
+                                fill
+                                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                                className="object-cover transition-transform duration-300 hover:scale-105"
+                            />
+                        </div>
+                        <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-opacity duration-300 flex items-end">
+                            <div className="p-4 text-white opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                <p className="font-bold text-sm line-clamp-1">{image.description}</p>
+                                <p className="text-xs mt-1 line-clamp-1">Tags: {image.tags.join(', ')}</p>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
-            {selectedImage && (
+            {fullscreenIndex !== null && (
                 <FullscreenImage
-                    src={selectedImage.blob_url}
-                    alt={selectedImage.description || 'Fullscreen image'}
+                    images={images}
+                    currentIndex={fullscreenIndex}
                     onClose={closeFullscreen}
+                    onNavigate={navigateFullscreen}
                 />
             )}
         </>

@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "update-dimensions": "node scripts/update-image-dimensions.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -17,7 +18,8 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tabs": "^1.1.2",
     "@radix-ui/react-toast": "^1.2.4",
-    "@supabase/supabase-js": "^2.46.2",
+    "@supabase/supabase-js": "^2.47.10",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@vercel/blob": "^0.27.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -25,8 +27,10 @@
     "lucide-react": "^0.468.0",
     "next": "15.0.3",
     "next-auth": "^4.24.10",
+    "node-fetch": "^3.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "sharp": "^0.33.5",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7"
   },

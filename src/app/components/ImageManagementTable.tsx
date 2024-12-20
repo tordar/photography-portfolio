@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import {useState, useEffect, useCallback} from 'react'
 import { supabase } from '@/lib/supabase'
 import { useToast } from "@/components/ui/use-toast"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Pencil, Trash2, X, Check } from 'lucide-react'
 import Image from 'next/image'
-// import { del } from '@vercel/blob'
 
 interface ImageMetadata {
     id: string
@@ -17,6 +16,8 @@ interface ImageMetadata {
     tags: string[]
     description: string
     created_at: string
+    width?: number
+    height?: number
 }
 
 export function ImageManagementTable() {
@@ -26,11 +27,7 @@ export function ImageManagementTable() {
     const [editedDescription, setEditedDescription] = useState<string>('')
     const { toast } = useToast()
 
-    useEffect(() => {
-        fetchImages()
-    }, [])
-
-    async function fetchImages() {
+    const fetchImages = useCallback(async () => {
         const { data, error } = await supabase
             .from('image_metadata')
             .select('*')
@@ -46,7 +43,11 @@ export function ImageManagementTable() {
         } else {
             setImages(data || [])
         }
-    }
+    }, [toast])
+
+    useEffect(() => {
+        fetchImages()
+    }, [fetchImages])
 
     const handleEdit = (image: ImageMetadata) => {
         setEditingId(image.id)
@@ -136,6 +137,7 @@ export function ImageManagementTable() {
                         <TableHead>Image</TableHead>
                         <TableHead>Tags</TableHead>
                         <TableHead>Description</TableHead>
+                        <TableHead>Dimensions</TableHead>
                         <TableHead>Actions</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -148,7 +150,8 @@ export function ImageManagementTable() {
                                     alt={image.description}
                                     width={100}
                                     height={100}
-                                    className="object-cover rounded"
+                                    objectFit="cover"
+                                    className="rounded"
                                 />
                             </TableCell>
                             <TableCell>
@@ -172,6 +175,9 @@ export function ImageManagementTable() {
                                 ) : (
                                     image.description
                                 )}
+                            </TableCell>
+                            <TableCell>
+                                {image.width && image.height ? `${image.width}x${image.height}` : 'Unknown'}
                             </TableCell>
                             <TableCell>
                                 {editingId === image.id ? (

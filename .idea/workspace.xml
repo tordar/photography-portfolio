@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="fullscreen images">
-      <change afterPath="$PROJECT_DIR$/src/app/components/ImageManagementTable.tsx" afterDir="false" />
+    <list default="true" id="66b2d5ac-2f14-4983-8789-f69c4d0a908f" name="Changes" comment="added management table for admin">
+      <change afterPath="$PROJECT_DIR$/scripts/update-image-dimensions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/AdminPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/AdminPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/blob-upload/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/blob-upload/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/FullscreenImage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/FullscreenImage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Gallery.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/ImageManagementTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/ImageManagementTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -54,23 +58,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/rodekors/Documents/GitHub/photography-portfolio&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/rodekors/Documents/GitHub/photography-portfolio/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/rodekors/Documents/GitHub/photography-portfolio",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.update-dimensions.executor": "Run",
+    "ts.external.directory.path": "/Users/rodekors/Documents/GitHub/photography-portfolio/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="npm.build">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -92,10 +97,26 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="update-dimensions" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="update-dimensions" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="npm.build" />
       <item itemvalue="npm.dev" />
+      <item itemvalue="npm.update-dimensions" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.update-dimensions" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -113,7 +134,7 @@
       <workItem from="1733393990722" duration="5011000" />
       <workItem from="1733926092817" duration="2819000" />
       <workItem from="1734352368295" duration="6637000" />
-      <workItem from="1734440093822" duration="8294000" />
+      <workItem from="1734440093822" duration="18823000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -211,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734534353559</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added management table for admin">
+      <option name="closed" value="true" />
+      <created>1734535262138</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1734535262138</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +260,7 @@
     <MESSAGE value="removed nav from admin panel" />
     <MESSAGE value="bulk upload of images now possible" />
     <MESSAGE value="fullscreen images" />
-    <option name="LAST_COMMIT_MESSAGE" value="fullscreen images" />
+    <MESSAGE value="added management table for admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="added management table for admin" />
   </component>
 </project>
