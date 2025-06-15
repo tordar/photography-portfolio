@@ -25,6 +25,16 @@ export function FullscreenImage({ images, currentIndex, onClose, onNavigate }: F
     const [touchStart, setTouchStart] = useState<number | null>(null)
     const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
+    // Prevent background scrolling when fullscreen is open
+    useEffect(() => {
+        document.body.style.overflow = 'hidden'
+        document.body.style.touchAction = 'none'
+        return () => {
+            document.body.style.overflow = ''
+            document.body.style.touchAction = ''
+        }
+    }, [])
+
     const handleKeyDown = useCallback((event: KeyboardEvent) => {
         if (event.key === 'Escape') {
             onClose()
@@ -43,6 +53,7 @@ export function FullscreenImage({ images, currentIndex, onClose, onNavigate }: F
     }
 
     const handleTouchMove = (e: React.TouchEvent) => {
+        e.preventDefault()
         if ((e.target as HTMLElement).closest('button')) {
             return;
         }
@@ -83,7 +94,7 @@ export function FullscreenImage({ images, currentIndex, onClose, onNavigate }: F
 
     return (
         <div 
-            className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center"
+            className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center overflow-hidden touch-none"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
