@@ -36,14 +36,23 @@ export function FullscreenImage({ images, currentIndex, onClose, onNavigate }: F
     }, [currentIndex, images.length, onClose, onNavigate])
 
     const handleTouchStart = (e: React.TouchEvent) => {
+        if ((e.target as HTMLElement).closest('button')) {
+            return;
+        }
         setTouchStart(e.touches[0].clientX)
     }
 
     const handleTouchMove = (e: React.TouchEvent) => {
+        if ((e.target as HTMLElement).closest('button')) {
+            return;
+        }
         setTouchEnd(e.touches[0].clientX)
     }
 
-    const handleTouchEnd = () => {
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        if ((e.target as HTMLElement).closest('button')) {
+            return;
+        }
         if (!touchStart || !touchEnd) return
 
         const distance = touchStart - touchEnd
@@ -58,6 +67,11 @@ export function FullscreenImage({ images, currentIndex, onClose, onNavigate }: F
 
         setTouchStart(null)
         setTouchEnd(null)
+    }
+
+    const handleCloseTouch = (e: React.TouchEvent) => {
+        e.stopPropagation();
+        onClose();
     }
 
     useEffect(() => {
@@ -76,7 +90,8 @@ export function FullscreenImage({ images, currentIndex, onClose, onNavigate }: F
         >
             <button
                 onClick={onClose}
-                className="absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none p-2 bg-black bg-opacity-50 rounded-full"
+                onTouchEnd={handleCloseTouch}
+                className="absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none p-2 bg-black bg-opacity-50 rounded-full z-50"
                 aria-label="Close fullscreen image"
             >
                 <X className="w-8 h-8" />
