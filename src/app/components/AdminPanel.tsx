@@ -4,8 +4,6 @@ import { useState, useCallback, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
 import type { Session } from "next-auth"
-import { supabase } from '@/lib/supabase'
-import { upload } from '@vercel/blob/client'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -56,9 +54,9 @@ export default function AdminPanel() {
         fetchTags()
     }, [])
 
-    const sanitizeFileName = (fileName: string) => {
-        return fileName.replace(/#/g, '%23').replace(/[^a-zA-Z0-9.-]/g, '_')
-    }
+    // const sanitizeFileName = (fileName: string) => {
+    //     return fileName.replace(/#/g, '%23').replace(/[^a-zA-Z0-9.-]/g, '_')
+    // }
 
     const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -73,8 +71,8 @@ export default function AdminPanel() {
 
             for (let i = 0; i < totalFiles; i++) {
                 const file = files[i]
-                const sanitizedFileName = sanitizeFileName(file.name)
-                const uniqueFileName = `${Date.now()}-${sanitizedFileName}`
+                // const sanitizedFileName = sanitizeFileName(file.name)
+                // const uniqueFileName = `${Date.now()}-${sanitizedFileName}`
 
                 // Create FormData for the file upload
                 const formData = new FormData()
@@ -92,7 +90,7 @@ export default function AdminPanel() {
                     throw new Error(`Upload failed: ${response.statusText}`)
                 }
 
-                const { url, pathname } = await response.json()
+                // const { url, pathname } = await response.json()
 
                 uploadedFiles++
                 setUploadProgress((uploadedFiles / totalFiles) * 100)
