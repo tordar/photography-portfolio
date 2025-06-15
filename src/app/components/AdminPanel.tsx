@@ -94,19 +94,6 @@ export default function AdminPanel() {
 
                 const { url, pathname } = await response.json()
 
-                const { error: supabaseError } = await supabase
-                    .from('image_metadata')
-                    .insert({
-                        blob_url: url,
-                        blob_pathname: pathname,
-                        tags: tags,
-                        description: description
-                    })
-
-                if (supabaseError) {
-                    throw supabaseError
-                }
-
                 uploadedFiles++
                 setUploadProgress((uploadedFiles / totalFiles) * 100)
             }
