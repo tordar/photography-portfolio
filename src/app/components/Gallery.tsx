@@ -49,7 +49,11 @@ export default function Gallery({ images }: GalleryProps) {
                                 alt={image.description || 'Gallery image'}
                                 fill
                                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                                className="object-cover transition-transform duration-300 hover:scale-105"
+                                className={`object-cover transition-transform duration-300 hover:scale-105 ${
+                                    image.width && image.height && image.height > image.width
+                                        ? '[object-position:50%_30%]'
+                                        : ''
+                                }`}
                             />
                         </div>
                         <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-opacity duration-300 flex items-end">
