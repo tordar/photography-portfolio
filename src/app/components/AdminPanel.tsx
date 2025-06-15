@@ -30,6 +30,7 @@ export default function AdminPanel() {
     const [description, setDescription] = useState<string>('')
     const [uploading, setUploading] = useState(false)
     const [uploadProgress, setUploadProgress] = useState(0)
+    const [selectedTag, setSelectedTag] = useState<string>('')
     const router = useRouter()
     const { data: session } = useSession() as { data: Session | null }
     const fileInputRef = useRef<HTMLInputElement>(null)
@@ -37,13 +38,20 @@ export default function AdminPanel() {
 
     useEffect(() => {
         async function fetchTags() {
-            const response = await fetch('/api/tags')
-            if (!response.ok) {
-                console.error('Error fetching tags')
-                return
+            try {
+                const response = await fetch('/api/tags')
+                if (!response.ok) {
+                    console.error('Error fetching tags')
+                    return
+                }
+                const data = await response.json()
+                // Filter out any empty strings or null values
+                const validTags = (data.tags || []).filter((tag: string) => tag && tag.trim() !== '')
+                console.log('Fetched tags:', validTags) // Debug log
+                setAllTags(validTags)
+            } catch (error) {
+                console.error('Error in fetchTags:', error)
             }
-            const data = await response.json()
-            setAllTags(data.tags)
         }
         fetchTags()
     }, [])
@@ -121,18 +129,22 @@ export default function AdminPanel() {
     }, [router])
 
     const handleAddTag = useCallback((tagToAdd: string) => {
-        if (tagToAdd && !tags.includes(tagToAdd)) {
+        if (tagToAdd && tagToAdd.trim() !== '' && !tags.includes(tagToAdd)) {
             setTags(prev => [...prev, tagToAdd])
             if (!allTags.includes(tagToAdd)) {
                 setAllTags(prev => [...prev, tagToAdd])
             }
             setNewTag('')
+            setSelectedTag('')
         }
     }, [tags, allTags])
 
     const handleRemoveTag = useCallback((tagToRemove: string) => {
         setTags(prev => prev.filter(tag => tag !== tagToRemove))
     }, [])
+
+    // Filter out any empty tags before rendering
+    const validTags = allTags.filter(tag => tag && tag.trim() !== '')
 
     return (
         <div className="space-y-4">
@@ -158,18 +170,28 @@ export default function AdminPanel() {
                         <div>
                             <Label htmlFor="tags">Tags</Label>
                             <div className="flex space-x-2">
-                                <Select onValueChange={handleAddTag}>
-                                    <SelectTrigger className="w-[180px]">
-                                        <SelectValue placeholder="Select a tag" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {allTags.map((tag) => (
-                                            <SelectItem key={tag} value={tag}>
-                                                {tag}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
+                                {validTags.length > 0 && (
+                                    <Select 
+                                        value={selectedTag}
+                                        onValueChange={(value) => {
+                                            if (value && value.trim() !== '') {
+                                                setSelectedTag(value)
+                                                handleAddTag(value)
+                                            }
+                                        }}
+                                    >
+                                        <SelectTrigger className="w-[180px]">
+                                            <SelectValue placeholder="Select a tag" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {validTags.map((tag) => (
+                                                <SelectItem key={tag} value={tag}>
+                                                    {tag}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                )}
                                 <Input
                                     placeholder="New tag"
                                     value={newTag}
