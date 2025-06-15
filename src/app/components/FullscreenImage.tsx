@@ -85,6 +85,18 @@ export function FullscreenImage({ images, currentIndex, onClose, onNavigate }: F
         onClose();
     }
 
+    const handleImageAreaClick = (e: React.MouseEvent) => {
+        const rect = e.currentTarget.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const isLeftSide = x < rect.width / 2
+
+        if (isLeftSide) {
+            onNavigate((currentIndex - 1 + images.length) % images.length)
+        } else {
+            onNavigate((currentIndex + 1) % images.length)
+        }
+    }
+
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown)
         return () => {
@@ -107,21 +119,10 @@ export function FullscreenImage({ images, currentIndex, onClose, onNavigate }: F
             >
                 <X className="w-8 h-8" />
             </button>
-            <button
-                onClick={() => onNavigate((currentIndex - 1 + images.length) % images.length)}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 focus:outline-none p-2 bg-black bg-opacity-50 rounded-full"
-                aria-label="Previous image"
+            <div 
+                className="relative w-full h-full max-w-7xl max-h-[90vh] mx-auto cursor-pointer"
+                onClick={handleImageAreaClick}
             >
-                <ChevronLeft className="w-8 h-8" />
-            </button>
-            <button
-                onClick={() => onNavigate((currentIndex + 1) % images.length)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 focus:outline-none p-2 bg-black bg-opacity-50 rounded-full"
-                aria-label="Next image"
-            >
-                <ChevronRight className="w-8 h-8" />
-            </button>
-            <div className="relative w-full h-full max-w-7xl max-h-[90vh] mx-auto">
                 <Image
                     src={currentImage.blob_url}
                     alt={currentImage.description || 'Fullscreen image'}
