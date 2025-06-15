@@ -1,6 +1,6 @@
 import { useEffect, useCallback, useState } from 'react'
 import Image from 'next/image'
-import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { X } from 'lucide-react'
 
 interface ImageMetadata {
     id: string
