@@ -76,10 +76,23 @@ export default function AdminPanel() {
                 const sanitizedFileName = sanitizeFileName(file.name)
                 const uniqueFileName = `${Date.now()}-${sanitizedFileName}`
 
-                const { url, pathname } = await upload(uniqueFileName, file, {
-                    access: 'public',
-                    handleUploadUrl: '/api/blob-upload',
+                // Create FormData for the file upload
+                const formData = new FormData()
+                formData.append('file', file)
+                formData.append('tags', JSON.stringify(tags))
+                formData.append('description', description)
+
+                // Upload to the server-side route
+                const response = await fetch('/api/blob-upload', {
+                    method: 'POST',
+                    body: formData,
                 })
+
+                if (!response.ok) {
+                    throw new Error(`Upload failed: ${response.statusText}`)
+                }
+
+                const { url, pathname } = await response.json()
 
                 const { error: supabaseError } = await supabase
                     .from('image_metadata')

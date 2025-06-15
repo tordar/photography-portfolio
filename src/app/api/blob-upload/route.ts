@@ -26,7 +26,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         console.log('Parsing form data')
         const formData = await request.formData()
         const file = formData.get('file') as File
-        const tags = formData.get('tags') as string
+        const tagsString = formData.get('tags') as string
         const description = formData.get('description') as string
 
         if (!file) {
@@ -65,12 +65,13 @@ export async function POST(request: Request): Promise<NextResponse> {
         }
 
         console.log('Storing metadata in Supabase')
+        const parsedTags = JSON.parse(tagsString || '[]')
         const { error } = await supabase
             .from('image_metadata')
             .insert({
                 blob_url: blob.url,
                 blob_pathname: blob.pathname,
-                tags: tags.split(',').map(tag => tag.trim()),
+                tags: parsedTags,
                 description: description,
                 width: metadata.width,
                 height: metadata.height
