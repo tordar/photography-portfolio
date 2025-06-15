@@ -15,6 +15,7 @@ const UPLOAD_TIMEOUT = 60000; // 60 seconds timeout
 
 export async function POST(request: Request): Promise<NextResponse> {
     console.log('Blob upload request received')
+    console.log('Request Content-Type:', request.headers.get('content-type'))
 
     const session = await getServerSession(authOptions)
     if (!session) {
