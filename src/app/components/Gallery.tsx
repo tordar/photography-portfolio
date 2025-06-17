@@ -21,6 +21,11 @@ interface GalleryProps {
 
 export default function Gallery({ images }: GalleryProps) {
     const [fullscreenIndex, setFullscreenIndex] = useState<number | null>(null)
+    const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
+
+    const handleImageLoad = useCallback((imageId: string) => {
+        setLoadedImages(prev => new Set([...Array.from(prev), imageId]))
+    }, [])
 
     const openFullscreen = useCallback((index: number) => {
         setFullscreenIndex(index)
@@ -40,7 +45,14 @@ export default function Gallery({ images }: GalleryProps) {
                 {images.map((image, index) => (
                     <div
                         key={image.id}
-                        className="relative cursor-pointer overflow-hidden"
+                        className={`relative cursor-pointer overflow-hidden rounded-lg transition-all duration-700 ease-out ${
+                            loadedImages.has(image.id) 
+                                ? 'opacity-100 transform translate-y-0' 
+                                : 'opacity-0 transform translate-y-4'
+                        }`}
+                        style={{
+                            transitionDelay: `${index * 150}ms`
+                        }}
                         onClick={() => openFullscreen(index)}
                     >
                         <div className="aspect-w-4 aspect-h-3">
@@ -54,6 +66,8 @@ export default function Gallery({ images }: GalleryProps) {
                                         ? '[object-position:50%_30%]'
                                         : ''
                                 }`}
+                                onLoad={() => handleImageLoad(image.id)}
+                                loading="lazy"
                             />
                         </div>
                         <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-opacity duration-300 flex items-end">
