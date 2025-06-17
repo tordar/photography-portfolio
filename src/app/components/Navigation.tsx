@@ -56,7 +56,7 @@ export default function Navigation() {
                                 className={cn(
                                     "hover:text-primary transition-colors",
                                     pathname === `/category/${encodeURIComponent(tag)}`
-                                        ? "text-primary font-medium underline"
+                                        ? "text-primary font-medium "
                                         : "text-muted-foreground"
                                 )}
                             >
