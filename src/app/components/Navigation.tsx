@@ -33,12 +33,13 @@ export default function Navigation() {
 
     return (
         <nav className="border-b">
-            <div className="container mx-auto px-4">
-                <div className="flex flex-col items-center py-8">
-                    <Link href="/" className="text-2xl font-bold mb-6">
-                        PHOTOGRAPHY PORTFOLIO
+            <div className="w-full px-4">
+                <div className="py-8">
+                    <Link href="/" className="text-2xl font-bold block mb-6">
+                        <span className="font-light">Photography</span>{" "}
+                        <span className="font-bold">Tordar Tømmervik</span>
                     </Link>
-                    <div className="flex flex-wrap justify-center gap-6 text-sm">
+                    <div className="flex flex-wrap justify-center gap-14 text-sm">
                         <Link
                             href="/"
                             className={cn(

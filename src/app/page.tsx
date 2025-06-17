@@ -20,7 +20,7 @@ export default async function Home() {
     return (
         <>
             <Navigation />
-            <main className="container mx-auto px-4 py-12">
+            <main className="w-3/4 mx-auto px-4 py-12">
                 <Gallery images={images || []} />
             </main>
         </>
