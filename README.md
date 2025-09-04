@@ -1,6 +1,6 @@
-# Photography Portfolio - Tordar Tømmervik
+# 📸 Photography Portfolio - Tordar Tømmervik 📸
 
-A modern photography portfolio website built with Next.js and a custom admin panel solution 📸
+A modern photography portfolio website built with Next.js and a custom admin panel solution 
 
 ## Features
 
