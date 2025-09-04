@@ -17,7 +17,7 @@ A modern photography portfolio website built with Next.js and a custom admin pan
 | Main Gallery | Admin Panel - Upload | Admin Panel - Manage |
 |:------------:|:-------------------:|:-------------------:|
 | ![Main Gallery](public/screenshots/main-gallery.png) | ![Admin Panel Upload](public/screenshots/admin-upload.png) | ![Admin Panel Manage](public/screenshots/admin-gallery.png) |
-| *Main gallery view with concert photos* | *Upload images interface* | *Manage existing images* |
+| *Main gallery view with tag filtering* | *Upload images interface* | *Manage existing images* |
 
 </div>
 
